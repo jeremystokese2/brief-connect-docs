@@ -1,0 +1,2858 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://jeremystokese2.github.io/bcdocs/Admin%20Guide/How-to-manage-Brief-Connect-permissions-with-Azure-Storage-Explorer/">
+      
+      
+        <link rel="prev" href="../Home/">
+      
+      
+        <link rel="next" href="../Managing-proxies/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>How to manage Brief Connect permissions with Azure Storage Explorer - Brief Connect Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#before-you-start" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Brief Connect Documentation" class="md-header__button md-logo" aria-label="Brief Connect Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Brief Connect Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              How to manage Brief Connect permissions with Azure Storage Explorer
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Brief Connect Documentation" class="md-nav__button md-logo" aria-label="Brief Connect Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Brief Connect Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Admin Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Admin Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Adding-document-templates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adding document templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Application-Settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Application Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Flow-Controls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flow Controls
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Granting-access-to-flow-controls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Granting access to flow controls
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Home/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    How to manage Brief Connect permissions with Azure Storage Explorer
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    How to manage Brief Connect permissions with Azure Storage Explorer
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before you start
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-permissions-in-brief-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Permissions in Brief Connect
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Permissions in Brief Connect">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-open-azure-storage-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Open Azure Storage Explorer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-connect-to-your-storage-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Connect to Your Storage Account
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-navigate-to-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Navigate to Tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-manage-permission-sets-and-role-assignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Manage Permission Sets and Role Assignments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Manage Permission Sets and Role Assignments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#permission-sets-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permission Sets Table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Permission Sets Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-a-new-permission-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add a New Permission Set
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#role-assignments-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Role Assignments Table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Role Assignments Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-a-new-role-assignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add a New Role Assignment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-recalculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permission Recalculation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-role-assignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple Role Assignments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#special-rules-for-recordroleassignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Special Rules for RecordRoleAssignments
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      See also
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Managing-proxies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing proxies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reviewing-logs-in-App-Insights/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reviewing logs in App Insights
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deployment Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Deployment Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/1.-Executive-Summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Executive Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/10-Power-BI-deployment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10 Power BI deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/2.-Azure-Resource-Deployment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Azure Resource Deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/3-Add-application-permissions-on-sites/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3 Add application permissions on sites
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/4-Setup-email-notifications-whitelist-%28optional%29/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4 Setup email notifications whitelist (optional)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/5-Deploy-Office-Resources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5 Deploy Office Resources
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/6-Deploy-Server%252DSide-Code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6 Deploy Server%2DSide Code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/7-Deploy-Client%252DSide-Code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7 Deploy Client%2DSide Code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/8-Teams-Application/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8 Teams Application
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/9-Post-deployment-steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9 Post deployment steps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_11" id="__nav_3_2_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    10 Power BI deployment
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_11">
+            <span class="md-nav__icon md-icon"></span>
+            10 Power BI deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/10-Power-BI-deployment/10.1-Pre%252Drequisites/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10.1 Pre%2Drequisites
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/10-Power-BI-deployment/10.2-Getting-connection-data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10.2 Getting connection data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/10-Power-BI-deployment/10.3-Setting-up-Power-BI/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10.3 Setting up Power BI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/10-Power-BI-deployment/10.4-Create-Report-%2B-dataset/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10.4 Create Report + dataset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_12" id="__nav_3_2_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2. Azure Resource Deployment
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_12">
+            <span class="md-nav__icon md-icon"></span>
+            2. Azure Resource Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/2.-Azure-Resource-Deployment/2.1-Note-on-Authorisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.1 Note on Authorisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/2.-Azure-Resource-Deployment/2.10-Create-AAD-groups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.10 Create AAD groups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/2.-Azure-Resource-Deployment/2.11-Org-hierarchy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.11 Org hierarchy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/2.-Azure-Resource-Deployment/2.12-Update-AAD-App-Reply-URLs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.12 Update AAD App Reply URLs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/2.-Azure-Resource-Deployment/2.13-Final-Function-App-Configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.13 Final Function App Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/2.-Azure-Resource-Deployment/2.14-Redis-cache-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.14 Redis cache setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/2.-Azure-Resource-Deployment/2.15-Guest-access/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.15 Guest access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/2.-Azure-Resource-Deployment/2.2-Note-of-pre%252Drequisites/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.2 Note of pre%2Drequisites
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/2.-Azure-Resource-Deployment/2.3-Note-of-resources-provisioned-on-this-stage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.3 Note of resources provisioned on this stage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/2.-Azure-Resource-Deployment/2.4-Generate-certificates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.4 Generate certificates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/2.-Azure-Resource-Deployment/2.5-Create-AAD-Apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.5 Create AAD Apps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/2.-Azure-Resource-Deployment/2.6-Assign-permissions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.6 Assign permissions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/2.-Azure-Resource-Deployment/2.7-Create-a-service-connection-in-Azure-DevOps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.7 Create a service connection in Azure DevOps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/2.-Azure-Resource-Deployment/2.8-Pipeline-Configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.8 Pipeline Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/2.-Azure-Resource-Deployment/2.9-Initial-Deployment-%252D-Kick%252Doff-Pipelines/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.9 Initial Deployment %2D Kick%2Doff Pipelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_13" id="__nav_3_2_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    3 Add application permissions on sites
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_13">
+            <span class="md-nav__icon md-icon"></span>
+            3 Add application permissions on sites
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/3-Add-application-permissions-on-sites/3.1-Pre%252Drequisites/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3.1 Pre%2Drequisites
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/3-Add-application-permissions-on-sites/3.2-Steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3.2 Steps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/3-Add-application-permissions-on-sites/3.3-Sites-and-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3.3 Sites and applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_14" id="__nav_3_2_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    4 Setup email notifications whitelist (optional)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_14">
+            <span class="md-nav__icon md-icon"></span>
+            4 Setup email notifications whitelist (optional)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/4-Setup-email-notifications-whitelist-%28optional%29/4.1-Pre%252Drequisites/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4.1 Pre%2Drequisites
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/4-Setup-email-notifications-whitelist-%28optional%29/4.2-Steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4.2 Steps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_15" id="__nav_3_2_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    5 Deploy Office Resources
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_15">
+            <span class="md-nav__icon md-icon"></span>
+            5 Deploy Office Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/5-Deploy-Office-Resources/5.1-Manual-Pre%252Drequisites/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5.1 Manual Pre%2Drequisites
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/5-Deploy-Office-Resources/5.2-SharePoint-Site-Manual-Configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5.2 SharePoint Site Manual Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/5-Deploy-Office-Resources/5.3-Build-Pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5.3 Build Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/5-Deploy-Office-Resources/5.4-Release-Pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5.4 Release Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_16" id="__nav_3_2_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    6 Deploy Server%2DSide Code
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_16">
+            <span class="md-nav__icon md-icon"></span>
+            6 Deploy Server%2DSide Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/6-Deploy-Server%252DSide-Code/6.1-Build-Pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6.1 Build Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/6-Deploy-Server%252DSide-Code/6.2-Release-Pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6.2 Release Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_17" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_17" id="__nav_3_2_17_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    7 Deploy Client%2DSide Code
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_17">
+            <span class="md-nav__icon md-icon"></span>
+            7 Deploy Client%2DSide Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/7-Deploy-Client%252DSide-Code/7.1-Build-Pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7.1 Build Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/7-Deploy-Client%252DSide-Code/7.2-Client-Configuration-JSON/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7.2 Client Configuration JSON
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/7-Deploy-Client%252DSide-Code/7.3-Release-Pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7.3 Release Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_18" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_18" id="__nav_3_2_18_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    8 Teams Application
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_18">
+            <span class="md-nav__icon md-icon"></span>
+            8 Teams Application
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/8-Teams-Application/8.1-Pre%252Drequisites/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8.1 Pre%2Drequisites
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/8-Teams-Application/8.2-Prepare-and-install-Teams-App/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8.2 Prepare and install Teams App
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/8-Teams-Application/8.3-Setup-Teams-policies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8.3 Setup Teams policies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment%20Guide/Home/8-Teams-Application/8.4-Update-Azure-Function-Settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8.4 Update Azure Function Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Solution Design
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Solution Design
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Solution%20Design/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    User Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            User Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../User%20Guide/Add-attachments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Add attachments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../User%20Guide/Exporting-records-to-PDF-or-CSV/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exporting records to PDF or CSV
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../User%20Guide/Flow-Controls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flow Controls
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../User%20Guide/Home/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../User%20Guide/Initiate-new-record/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Initiate new record
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../User%20Guide/Personal-Notification-settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Personal Notification settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../User%20Guide/Proxy-management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Proxy management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../User%20Guide/Record-a-decision/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Record a decision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before you start
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-permissions-in-brief-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Permissions in Brief Connect
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Permissions in Brief Connect">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-open-azure-storage-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Open Azure Storage Explorer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-connect-to-your-storage-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Connect to Your Storage Account
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-navigate-to-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Navigate to Tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-manage-permission-sets-and-role-assignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Manage Permission Sets and Role Assignments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Manage Permission Sets and Role Assignments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#permission-sets-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permission Sets Table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Permission Sets Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-a-new-permission-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add a New Permission Set
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#role-assignments-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Role Assignments Table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Role Assignments Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-a-new-role-assignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add a New Role Assignment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-recalculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permission Recalculation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-role-assignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple Role Assignments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#special-rules-for-recordroleassignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Special Rules for RecordRoleAssignments
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      See also
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>How to manage Brief Connect permissions with Azure Storage Explorer</h1>
+
+<p>This guide explains how to configure permissions in Brief Connect using the Azure Storage Explorer application. Follow these steps to set up Permission Sets and Role Assignments to manage user access to records effectively.</p>
+<p>[[<em>TOC</em>]]</p>
+<h2 id="before-you-start">Before you start</h2>
+<p>Before you begin, ensure you have:</p>
+<ul>
+<li>Write access to the Storage Account in Azure where Brief Connect is deployed</li>
+<li>Azure Storage Explorer installed on your device</li>
+</ul>
+<h2 id="configure-permissions-in-brief-connect">Configure Permissions in Brief Connect</h2>
+<h3 id="1-open-azure-storage-explorer">1. Open Azure Storage Explorer</h3>
+<p>Launch Azure Storage Explorer on your device.</p>
+<h3 id="2-connect-to-your-storage-account">2. Connect to Your Storage Account</h3>
+<ol>
+<li>In Azure Storage Explorer, click on the "Connect" button (plug icon) in the left sidebar</li>
+<li>Select "Storage account or service"</li>
+<li>Choose one of the following connection methods:</li>
+<li><strong>Connection string</strong>: Select "Connection string (key or SAS)" and paste your storage account connection string</li>
+<li><strong>Azure login</strong>: Select "Azure" and sign in with your Azure credentials</li>
+<li>Click "Next"</li>
+<li>Click "Connect"</li>
+</ol>
+<h3 id="3-navigate-to-tables">3. Navigate to Tables</h3>
+<ol>
+<li>Expand your storage account in the left navigation pane</li>
+<li>Expand "Tables" to view all tables</li>
+</ol>
+<p><img alt="image.png" src="/.attachments/image-b2e4f135-e39e-4008-afbe-50757ee9364e.png" /></p>
+<h3 id="4-manage-permission-sets-and-role-assignments">4. Manage Permission Sets and Role Assignments</h3>
+<p>You will see a list of tables corresponding to your Brief Connect instance. The two relevant tables for configuring permissions are the <strong>PermissionSets</strong> Table and the <strong>RoleAssignments</strong> Table.</p>
+<p><img alt="image.png" src="/.attachments/image-7b8d68a6-2579-4f71-a0e1-abc091ad4b1d.png" /></p>
+<p>A Permission Set is a collection of individual permissions that control what actions a user can perform in Brief Connect. Each permission is a simple true/false (boolean) flag that either grants or denies access to a specific capability, such as viewing records or editing documents.</p>
+<p>Role Assignments are used to assign a Permission Set to users based on targeting rules. The targeting rules can filter users through mechanisms like Entra ID Group membership or specific email addresses, and can filter records through attributes like Record Type, Metadata values, or Workflow Stage.</p>
+<p>For example, you could create a Role Assignment that:
+- Grants the "Read Only" Permission Set
+- To all users in the "Finance Team" Entra ID Group 
+- For all records with Record Type "Invoice"</p>
+<p>This flexible rules engine allows System Administrators to create sophisticated permission schemes that match their organisation's business processes and compliance requirements.</p>
+<h4 id="permission-sets-table">Permission Sets Table</h4>
+<p>Permission Sets are stored in the Permission Sets table, where administrators can create and modify them based on their organisation's needs. When a user is assigned a Permission Set through Role Assignments, Brief Connect checks these individual permissions whenever the user attempts to perform an action.</p>
+<p>For example, a "Read Only" Permission Set might have viewing permissions for a record enabled but editing permissions disabled, while a "Full Access" Permission Set might enable all permissions. </p>
+<p>The Permission Sets table contains the following individual permissions that can be enabled or disabled:</p>
+<table>
+<thead>
+<tr>
+<th>Permission</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CanViewRecord</td>
+<td>Controls whether the user can view the basic record information (i.e. open the details page for a Record)</td>
+</tr>
+<tr>
+<td>CanEditRecordMetadata</td>
+<td>Controls whether the user can edit record metadata (note: this includes all fields on the Record Details page. Brief Connect does not currently support limiting which fields can be edited - or 'field-level' permissions)</td>
+</tr>
+<tr>
+<td>CanViewAllDocuments</td>
+<td>Controls whether the user can view all documents on a record</td>
+</tr>
+<tr>
+<td>CanAddDocuments</td>
+<td>Controls whether the user can add new documents</td>
+</tr>
+<tr>
+<td>CanEditDocuments</td>
+<td>Controls whether the user can edit documents (editing record content, as well as renaming and reordering documents)</td>
+</tr>
+<tr>
+<td>CanDeleteDocuments</td>
+<td>Controls whether the user can delete documents</td>
+</tr>
+<tr>
+<td>CanUploadSignedDocuments</td>
+<td>Controls whether the user can upload signed versions of documents</td>
+</tr>
+<tr>
+<td>CanUploadSupportingDocuments</td>
+<td>Controls whether the user can upload supporting documentation (note: this is a useful flag if you want to allow users to upload documents to only the Supporting Documents category. If this is your intention, then the user must not inherit the 'CanAddDocuments' permission as it will override this flag)</td>
+</tr>
+<tr>
+<td>CanCreateBrief</td>
+<td>Controls whether the user can create new records - this flag must be paired with a Role Assignment that targets permissions on a record type-basis (e.g. activates on a 'Ministerial Correspondence' record type)</td>
+</tr>
+<tr>
+<td>CanCancelRecord</td>
+<td>Controls whether the user can cancel records</td>
+</tr>
+<tr>
+<td>CanPlaceRecordOnHold</td>
+<td>Controls whether the user can place records on hold</td>
+</tr>
+<tr>
+<td>CanTakeNoFurtherAction</td>
+<td>Controls whether the user can mark records as requiring no further action</td>
+</tr>
+<tr>
+<td>CanWithdrawRecord</td>
+<td>Controls whether the user can withdraw records</td>
+</tr>
+</tbody>
+</table>
+<p>If a property/field hasn't be defined for a Permission Set, it will inherit a default value of <code>'false'</code>.</p>
+<h5 id="add-a-new-permission-set">Add a New Permission Set</h5>
+<ol>
+<li>Click the <strong>+ Add entity</strong> button at the top of the PermissionSets table.</li>
+</ol>
+<p><img alt="Add Entity button" src="/.attachments/image-bb61be92-61d1-418e-9a4e-a5e2c972dd64.png" /></p>
+<ol>
+<li>Fill in the required fields:</li>
+<li><strong>PartitionKey</strong>: Set this to <code>'Basic'</code>.</li>
+<li><strong>RowKey</strong>: Enter a name of your choice for the permission set, e.g., <code>'ReadOnly'</code>.</li>
+</ol>
+<p><img alt="Permissions Sets fields" src="/.attachments/image-f8705dc2-0690-4b8e-aa74-a6f4e82bbf9e.png" /></p>
+<ol>
+<li>
+<p>Assign <code>'true'</code> or <code>'false'</code> values to each property based on the desired permissions. Ensure the <strong>Type</strong> field remains set to <code>'Boolean'</code> for all properties.</p>
+</li>
+<li>
+<p>After configuring the permission set, click <strong>Insert</strong> to save. To edit an existing permission set, double-click or right-click and select <strong>Edit</strong>.</p>
+</li>
+</ol>
+<h4 id="role-assignments-table">Role Assignments Table</h4>
+<p>The Role Assignments table allows you to create and modify roles linked to specific permission sets. A Role Assignment is like a collection of rules that combine together to determine the subset of users that should inherit a given Permission Set. </p>
+<p>Each role assignment has the following properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Mandatory</th>
+<th>Examples</th>
+<th>Default Value</th>
+<th>Field Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PartitionKey</td>
+<td>Accepts a comma-separated list of record types. The RoleAssignment will only apply to Record Types specified in this field. <br><br>This is the same name as the Content Type within SharePoint Online for the Record Type.<br><em>Alternatively, set the value to 'All' to apply the role assignment to all record types</em></td>
+<td>Yes</td>
+<td>Cabinet Submission (CSUB),Correspondence,Ministerial Correspondence (CMIN)</td>
+<td>None</td>
+<td>String</td>
+</tr>
+<tr>
+<td>RowKey</td>
+<td>A unique identifier for the Role Assignmnet. Commonly used to summarise the role assignment for clarity</td>
+<td>Yes</td>
+<td>COR - AO - EDIT<br>COR - LA - READ<br>CSUB - Full Access<br>BMIN - Full Access<br>BSEC - Full Access</td>
+<td>None</td>
+<td>String</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>A detailed description of the role assignment for clarity</td>
+<td>No</td>
+<td>Provides edit access for Accountable Officers on Correspondence records. This helps identify the purpose when reviewing role assignments later.</td>
+<td>None</td>
+<td>String</td>
+</tr>
+<tr>
+<td>PermissionSet</td>
+<td>The name of a single permission set from the PermissionSets table to be allocated to the role. Each role assignment can only have one permission set.</td>
+<td>Yes</td>
+<td>ReadOnly</td>
+<td>None</td>
+<td>String</td>
+</tr>
+<tr>
+<td>RecordRoleNames</td>
+<td>Accepts a comma-separated list of record role display names that this assignment applies to, or 'All' to apply the role assignment to all roles. Must exactly match the role names configured in the content type settings for the record type(s). Also see <a href="#special-rules-for-recordroleassignments">Special Rules for RecordRoleAssignments</a></td>
+<td>No</td>
+<td>Accountable Officer,Lead Author</td>
+<td>All</td>
+<td>String</td>
+</tr>
+<tr>
+<td>Stages</td>
+<td>Accepts the name of the workflow stages this assignment applies to, or 'All' to apply the role assignment to all stages. Must exactly match the stage names configured in the workflow settings for the record type(s)</td>
+<td>No</td>
+<td>None</td>
+<td>All</td>
+<td>String</td>
+</tr>
+<tr>
+<td>AADGroupNames</td>
+<td>A comma-separated list of Azure AD groups this assignment applies to</td>
+<td>No</td>
+<td>SG_Finance_Team</td>
+<td>None</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> The fields <strong>ForFieldValues</strong> and <strong>Organisations</strong> are to be updated as per your organization's requirements.</p>
+</blockquote>
+<p>Each property within a Role Assignment further refines the scope of the Role Assignment.</p>
+<p>For example, a Role Assignment might be configured to grant the "Read Only" Permission Set to all users in the "Finance Team" for all "Correspondence" records. You would achieve this by setting the following values:</p>
+<ul>
+<li><strong>PartitionKey</strong>: <code>'Correspondence (Cor)'</code></li>
+<li><strong>RowKey</strong>: <code>'COR - Full Access'</code></li>
+<li><strong>Description</strong>: <code>'Grants read only access to all Correspondence records for the Finance Team'</code></li>
+<li><strong>PermissionSet</strong>: <code>'ReadOnly'</code></li>
+<li><strong>AADGroupNames</strong>: <code>'SG_Finance_Team'</code></li>
+</ul>
+<p>This Role Assignment will be inherited by all users in the "Finance Team" Entra ID Group for all "Correspondence" records. The "ReadOnly" Permission Set would apply to all workflow stages of the Correspondence record.</p>
+<h5 id="add-a-new-role-assignment">Add a New Role Assignment</h5>
+<ol>
+<li>Click the <strong>+ Add entity</strong> button above the RoleAssignments table.</li>
+</ol>
+<p><img alt="Add Role Assignment button" src="/.attachments/image-cfe23c20-f7f5-4982-a7fa-d42740e381c3.png" /></p>
+<ol>
+<li>Provide the required details for the role assignment, including <strong>PartitionKey</strong>, <strong>RowKey</strong>, <strong>Description</strong>, and select the appropriate <strong>PermissionSet</strong>.</li>
+</ol>
+<p>{<strong>Assumption:</strong> Additional fields such as <strong>RecordRoleNames</strong>, <strong>Stages</strong>, and <strong>AADGroupNames</strong> should be filled based on your organisation's specific roles and requirements.}</p>
+<p><img alt="Role assignment details" src="/.attachments/image-c961f104-9347-4223-82a3-5586ede5c6f4.png" /></p>
+<ol>
+<li>After entering all necessary information, click <strong>Insert</strong> to save the new role assignment.</li>
+</ol>
+<h4 id="permission-recalculation">Permission Recalculation</h4>
+<p>Each time a user requests a record (i.e.: via opening the Record Details page), Brief Connect will recalculate the user's permissions based on the Role Assignments they are assigned to. This ensures that users can only access records that they are explicitly assigned to and perform actions they are explicitly granted permission to.</p>
+<h4 id="multiple-role-assignments">Multiple Role Assignments</h4>
+<p>Brief Connect supports multiple Role Assignments for a given user. This allows you to create complex permission schemes that combine multiple Permission Sets and targeting rules.</p>
+<p>All Permission Sets assigned to a user are combined together, with the most permissive settings taking precedence. For example, if a user inherits two Role Assignments:</p>
+<ul>
+<li>One that grants "Full Access" permissions with the following flags:</li>
+<li>CanViewRecord = true</li>
+<li>CanEditRecordMetadata = true</li>
+<li>CanViewAllDocuments = true</li>
+<li>CanAddDocuments = true</li>
+<li>CanEditDocuments = true</li>
+<li>CanDeleteDocuments = true</li>
+<li>One that grants "Read Only" permissions with the following flags:</li>
+<li>CanViewRecord = true</li>
+</ul>
+<p>The total permissions granted to the user will be:</p>
+<ul>
+<li>CanViewRecord = true</li>
+<li>CanEditRecordMetadata = true</li>
+<li>CanViewAllDocuments = true</li>
+<li>CanAddDocuments = true</li>
+<li>CanEditDocuments = true</li>
+<li>CanDeleteDocuments = true</li>
+</ul>
+<h4 id="special-rules-for-recordroleassignments">Special Rules for RecordRoleAssignments</h4>
+<p>The <strong>RecordRoleNames</strong> field is used to specify which roles within a record type should inherit the Permission Set. In addition to supporting specific role names and the value 'All', it also supports a special set of values that can be used to target permissions at roles in a more dynamic way.</p>
+<p>The special values are:</p>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Named users from department roles (i.e. not the Decision stage roles), including the Initiator role</td>
+<td>DepartmentInclInitiator</td>
+</tr>
+<tr>
+<td>Named users from department roles (i.e. not the Decision stage roles), <strong>but excluding</strong> the Initiator role</td>
+<td>DepartmentExclInitiator</td>
+</tr>
+<tr>
+<td>Named users from roles in the Decision stage</td>
+<td>Decision</td>
+</tr>
+<tr>
+<td>Named users from roles in the Decision stage, <strong>but excluding</strong> the DLO role</td>
+<td>DecisionExclDLO</td>
+</tr>
+<tr>
+<td>Named users from all roles including aux roles</td>
+<td>AllIncludingViewOnlyCreatedByEtc</td>
+</tr>
+<tr>
+<td>Named users from initiator role</td>
+<td>Initiator</td>
+</tr>
+<tr>
+<td>Named users from DLO role</td>
+<td>DLO</td>
+</tr>
+<tr>
+<td>Users who are actively assigned a task within the workflow for the record<br><br><em>(e.g. if John Doe is an Accountable Officer on a Correspondence record, and is assigned the task of "Prepare first draft", by setting this value to "AssignedTo", the "Read Only" Permission Set will be granted to John Doe for the duration of the task. The Lead Author role can also be reassigned to another user, in which case the "Read Only" Permission Set will no longer be granted to John Doe)</em></td>
+<td>AssignedTo</td>
+</tr>
+</tbody>
+</table>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="https://azure.microsoft.com/en-us/products/storage/storage-explorer/">Azure Storage Explorer</a> - For managing Role Assignments and Permission Sets directly in Azure Storage Tables</li>
+<li><a href="https://portal.azure.com/#blade/Microsoft_AAD_IAM/GroupsManagementMenuBlade/AllGroups">Azure Active Directory Groups</a> - For managing AAD Groups referenced in Role Assignments</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
