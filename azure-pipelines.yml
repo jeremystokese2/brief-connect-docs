@@ -1,0 +1,29 @@
+trigger:
+  branches:
+    include:
+      - '*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  GITHUB_REPO: 'github.com/jeremystokese2/brief-connect-docs.git'
+  GITHUB_USERNAME: 'jeremystokese2'
+
+steps:
+- checkout: self
+  clean: true
+  fetchDepth: 1
+
+- script: |
+    rm -rf .git
+    git init
+    git config user.name "jeremystokese2"
+    git config user.email "jeremy.stokes@engagesq.com"
+    git add .
+    git commit -m "Update docs"
+    git branch -M main
+    git remote add origin "https://$(GITHUB_USERNAME):$(GITHUB_PAT)@$(GITHUB_REPO)"
+    git push -f origin main
+  env:
+    GITHUB_PAT: $(GITHUB_PAT)
